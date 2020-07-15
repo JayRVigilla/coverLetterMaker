@@ -16,17 +16,31 @@
 const fs = require('fs');
 const { exit } = require('process');
 
-function knitCoverLetter() {
-  // import template letter
-  //
-  if (err) {
-    console.log(`Error Found: ${err.message}`);
-    process exit(1);
-  } else {
-
+function saveFilesToVariables(file1, file2, file3) {
+  // return given file in templates folder
+  function getFile(filename) {
+    fs.readFile(`./templates/${filename}`, "utf8", function (err, data) {
+      if (err) {
+        console.log(`Error Found: ${err.message}`);
+        process.exit(1);
+      } else {
+        const file = data;
+        return file;
+      }
+    });
   }
+
+  const letterTemplate = getFile(file1);
+  console.log(letterTemplate)
+  const userblurbs = getFile(file2);
+  console.log(userblurbs);
+  const businessDetails = getFile(file3);
+  console.log(businessDetails);
+
+
+  console.log(`letter template ${letterTemplate} \n userBlurb ${userblurbs} \n businessDetails ${businessDetails}`)
 }
 
-cat(process.argv[2])
-
-// 50 minutes so far
+saveFilesToVariables(process.argv[2],process.argv[3],process.argv[4])
+// Day 1 50 minutes
+// Day 2 30 minutes
