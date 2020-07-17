@@ -23,8 +23,11 @@ function saveFilesToVariables(file1, file2, file3) {
   }
 
   const letterTemplate = getFile(file1);
+  console.log('type of letter template:', typeof letterTemplate);
   const userblurbs = getFile(file2);
+  console.log('type of userblurbs:', typeof userblurbs);
   const businessDetails = getFile(file3);
+  console.log('type of businessDetails:', typeof businessDetails);
 
 
   console.log(`\n letter template: \n ${letterTemplate} *******\n\n\n userBlurb: \n ${userblurbs} *******\n\n\n businessDetails: ${businessDetails}`)
@@ -33,3 +36,7 @@ function saveFilesToVariables(file1, file2, file3) {
 saveFilesToVariables(process.argv[2],process.argv[3],process.argv[4])
 // Day 1 50 minutes
 // Day 2 30 minutes
+// Day 3 20 minutes
+// Day 4 TODO: format txt files into backtic-string, and objects,
+        // madlib the files together
+        // output to a txt file
