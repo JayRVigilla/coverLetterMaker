@@ -19,26 +19,15 @@ const { exit } = require('process');
 function saveFilesToVariables(file1, file2, file3) {
   // return given file in templates folder
   function getFile(filename) {
-    fs.readFile(`./templates/${filename}`, "utf8", function (err, data) {
-      if (err) {
-        console.log(`Error Found: ${err.message}`);
-        process.exit(1);
-      } else {
-        const file = data;
-        return file;
-      }
-    });
+    return fs.readFileSync(`./templates/${filename}`);
   }
 
   const letterTemplate = getFile(file1);
-  console.log(letterTemplate)
   const userblurbs = getFile(file2);
-  console.log(userblurbs);
   const businessDetails = getFile(file3);
-  console.log(businessDetails);
 
 
-  console.log(`letter template ${letterTemplate} \n userBlurb ${userblurbs} \n businessDetails ${businessDetails}`)
+  console.log(`\n letter template: \n ${letterTemplate} *******\n\n\n userBlurb: \n ${userblurbs} *******\n\n\n businessDetails: ${businessDetails}`)
 }
 
 saveFilesToVariables(process.argv[2],process.argv[3],process.argv[4])
