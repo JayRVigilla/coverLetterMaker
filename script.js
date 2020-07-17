@@ -23,12 +23,13 @@ function saveFilesToVariables(file1, file2, file3) {
   }
 
   const letterTemplate = getFile(file1);
-  console.log('type of letter template:', typeof letterTemplate);
+  console.log('type of letter template:', typeof letterTemplate); // object
   const userblurbs = getFile(file2);
-  console.log('type of userblurbs:', typeof userblurbs);
+  console.log('type of userblurbs:', typeof userblurbs); // object
   const businessDetails = getFile(file3);
-  console.log('type of businessDetails:', typeof businessDetails);
+  console.log('type of businessDetails:', typeof businessDetails); // object
 
+  
 
   console.log(`\n letter template: \n ${letterTemplate} *******\n\n\n userBlurb: \n ${userblurbs} *******\n\n\n businessDetails: ${businessDetails}`)
 }
