@@ -20,6 +20,10 @@
 const fs = require('fs');
 const { exit } = require('process');
 const { stringify } = require('querystring');
+// const { stringAsBackTick } = require('./functions/stringAsBackTick');
+let letterTemplate = undefined;
+let userBlurbs = undefined;
+let businessDetails = undefined;
 
 function saveFilesToVariables(file1, file2, file3) {
   // return given file in templates folder
@@ -27,44 +31,59 @@ function saveFilesToVariables(file1, file2, file3) {
     return fs.readFileSync(`./templates/${filename}`).toString();
     }
 
-  const letterTemplate = getFile(file1).toString();
-  const userBlurbs = JSON.parse(getFile(file2));
-  const businessDetails = JSON.parse(getFile(file3));
+letterTemplate = getFile(file1).toString();
+userBlurbs = JSON.parse(getFile(file2));
+businessDetails = JSON.parse(getFile(file3));
 
 
   console.log(`letterTemplate: ${letterTemplate} \nuserBlurbs: ${userBlurbs} \nbusinessDetails: ${businessDetails}`)
+
 }
-
-saveFilesToVariables(process.argv[2], process.argv[3], process.argv[4]);
-
-// finds backtick syntax for placeholder within string and substitutes for variable with related key in given object
-// treat like a sliding window problem.
-function treatStringAsBacktick(str, obj) {
-  // if !.includes then return
-  if (!str.includes('${')) return "No placeholder in the string"
-  // let lastIdxFound = since indexof(value, startIdx)
+// TODO: break this up into smaller functions, getting hard to read & track
+function stringAsBackTick(str, obj){
+  /** DIFFERENT APPROACH
+   * #variableName is convention in coverletter.txt for identifying variables
+   * variable: draftString; a new string to return with values inserted.
+   * iterates through coverletter string until # is found
+   *   mark location of #
+   *   draftString is slice until #location
+   *   KeyInQuestion is string that follows # until whitespace (can get the end location by using length + #location)
+   *   if keyInQuestion in businessObj then draftString.push(bussinessObj[keyInQuestion])
+   *
+   * return draftString
+   **/
+  let draft = "";
   let start = 0;
-  let end = 0;
 
-  // while i <  str.length-3
-  for (let i = 0; i < str.length - 3; i++){
-    // if str[i] === $ and str[i+1] === {
-      // start = i
-      if (str[i] == '$' && str[i + 1] === '{') {
-        start = i;
-        // search for }
-        for (let j = i + 2; j < str.length; j++) {
-          if (str[j] === '}') {
-            end = j;
-            const variable = str.replace(/** REGEX of "${ ANYTHING}" */, keyMatchingAnything)
-          }
+  for (let i = 0; i < str.length; i++) {
+    // iterate until you find '#'
+    if (str[i] === '#') {
+      let maybeKey = '';
+
+      // draft becomes everything from str until the '#'
+      draft += str.slice(start, i - 1);
+      // find the end of the possible variable name
+
+      for (let j = i + 1; j < str.length; j++) {
+        if (str[j] === ' ') {
+          maybeKey = str.slice(i, j - 1);
+          console.log('maybeKey ', maybeKey);
+          if (obj.maybeKey) {
+            draft += obj[maybeKey];
+            i += maybeKey.length;
+            start = i;
+          };
         }
+      }
     }
   }
-        // variable = string in between .trim()
-        // buffer = obj.variable.length
-        // replace ${variable} with obj.variable
-        // lastIdxFound += buffer
-  return str;
- }
+
+  return draft;
+};
+
+saveFilesToVariables(process.argv[2], process.argv[3], process.argv[4]);
+// process coverLetter and MadLib it
+const businessDetailsIn = stringAsBackTick(letterTemplate, businessDetails);
+console.log('businessDetailsIn', businessDetailsIn);
+
 
