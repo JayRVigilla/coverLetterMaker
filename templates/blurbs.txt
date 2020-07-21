@@ -1,5 +1,1 @@
-I have a blurb here
-
-and another blurb here
-
-you should totally hire me
+{ "first": "I have a blurb here", "second": "and another blurb here", "third": "you should totally hire me" }

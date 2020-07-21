@@ -13,31 +13,58 @@
  * Output text file.
  */
 
+// Day 4 TODO: format txt files into backtic-string, and objects,
+        // madlib the files together
+        // output to a txt file
+
 const fs = require('fs');
 const { exit } = require('process');
+const { stringify } = require('querystring');
 
 function saveFilesToVariables(file1, file2, file3) {
   // return given file in templates folder
   function getFile(filename) {
-    return fs.readFileSync(`./templates/${filename}`);
-  }
+    return fs.readFileSync(`./templates/${filename}`).toString();
+    }
 
-  const letterTemplate = getFile(file1);
-  console.log('type of letter template:', typeof letterTemplate); // object
-  const userblurbs = getFile(file2);
-  console.log('type of userblurbs:', typeof userblurbs); // object
-  const businessDetails = getFile(file3);
-  console.log('type of businessDetails:', typeof businessDetails); // object
+  const letterTemplate = getFile(file1).toString();
+  const userBlurbs = JSON.parse(getFile(file2));
+  const businessDetails = JSON.parse(getFile(file3));
 
-  
 
-  console.log(`\n letter template: \n ${letterTemplate} *******\n\n\n userBlurb: \n ${userblurbs} *******\n\n\n businessDetails: ${businessDetails}`)
+  console.log(`letterTemplate: ${letterTemplate} \nuserBlurbs: ${userBlurbs} \nbusinessDetails: ${businessDetails}`)
 }
 
-saveFilesToVariables(process.argv[2],process.argv[3],process.argv[4])
-// Day 1 50 minutes
-// Day 2 30 minutes
-// Day 3 20 minutes
-// Day 4 TODO: format txt files into backtic-string, and objects,
-        // madlib the files together
-        // output to a txt file
+saveFilesToVariables(process.argv[2], process.argv[3], process.argv[4]);
+
+// finds backtick syntax for placeholder within string and substitutes for variable with related key in given object
+// treat like a sliding window problem.
+function treatStringAsBacktick(str, obj) {
+  // if !.includes then return
+  if (!str.includes('${')) return "No placeholder in the string"
+  // let lastIdxFound = since indexof(value, startIdx)
+  let start = 0;
+  let end = 0;
+
+  // while i <  str.length-3
+  for (let i = 0; i < str.length - 3; i++){
+    // if str[i] === $ and str[i+1] === {
+      // start = i
+      if (str[i] == '$' && str[i + 1] === '{') {
+        start = i;
+        // search for }
+        for (let j = i + 2; j < str.length; j++) {
+          if (str[j] === '}') {
+            end = j;
+            const variable = str.replace(/** REGEX of "${ ANYTHING}" */, keyMatchingAnything)
+          }
+        }
+    }
+  }
+        // variable = string in between .trim()
+        // buffer = obj.variable.length
+        // replace ${variable} with obj.variable
+        // lastIdxFound += buffer
+  return str;
+ }
+

@@ -1,4 +1,1 @@
-business name
-position
-anecdote 1
-anecdote 2
+{ "businessName": "Job Co", "position": "Hired", "anecdote1" : "I have a cat", "anecdote2" : "Their name is mittens" }
