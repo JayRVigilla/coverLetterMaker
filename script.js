@@ -38,47 +38,7 @@ businessDetails = JSON.parse(getFile(file3));
 
   console.log(`letterTemplate: ${letterTemplate} \nuserBlurbs: ${userBlurbs} \nbusinessDetails: ${businessDetails}`)
 
-}
-// TODO: break this up into smaller functions, getting hard to read & track
-function stringAsBackTick(str, obj){
-  /** DIFFERENT APPROACH
-   * #variableName is convention in coverletter.txt for identifying variables
-   * variable: draftString; a new string to return with values inserted.
-   * iterates through coverletter string until # is found
-   *   mark location of #
-   *   draftString is slice until #location
-   *   KeyInQuestion is string that follows # until whitespace (can get the end location by using length + #location)
-   *   if keyInQuestion in businessObj then draftString.push(bussinessObj[keyInQuestion])
-   *
-   * return draftString
-   **/
-  let draft = "";
-  let start = 0;
 
-  for (let i = 0; i < str.length; i++) {
-    // iterate until you find '#'
-    if (str[i] === '#') {
-      let maybeKey = '';
-
-      // draft becomes everything from str until the '#'
-      draft += str.slice(start, i - 1);
-      // find the end of the possible variable name
-
-      for (let j = i + 1; j < str.length; j++) {
-        if (str[j] === ' ') {
-          maybeKey = str.slice(i, j - 1);
-          console.log('maybeKey ', maybeKey);
-          if (obj.maybeKey) {
-            draft += obj[maybeKey];
-            i += maybeKey.length;
-            start = i;
-          };
-        }
-      }
-    }
-  }
-
-  return draft;
 };
 
 saveFilesToVariables(process.argv[2], process.argv[3], process.argv[4]);

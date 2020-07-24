@@ -1,3 +1,4 @@
-Hello #bussinessName, I want a job as a #position.
+Hello #bussinessName,
+I want a job as a #position.
 #anecdote1
 #anecdote2
