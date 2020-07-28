@@ -9,9 +9,12 @@
 
 function splitReplaceJoin(string, obj) {
   const regexTest = word => /^[#].*/.test(word);
-  const punctuation = [',', '.', '?', '!'];
+
+  // replace with regex for 'not a number or letter'
+  const punctuation = [',', '.', '?', '!', '/', ':', ';', '(', ')'];
+
   let maybeKey;
-  let strArr = string.split(' ');
+  let strArr = string.split(' ', '\n');
 
   // return strArr.map((x, i) => {
   //   console.log(x, i);
