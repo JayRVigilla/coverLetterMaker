@@ -7,17 +7,20 @@
  * .join array
  */
 
+// TODO: rename to MadLibber or something like that. will handle deets and
+//    call another function to prompt for and insert blurbs at designated location
+
 function splitReplaceJoin(string, obj) {
   const regexTest = word => /^[#].*/.test(word);
 
-  // replace with regex for 'not a number or letter'
+  // TODO: replace with regex for 'not a number or letter'
   const punctuation = [',', '.', '?', '!', '/', ':', ';', '(', ')'];
 
   let maybeKey;
   let strArr = string.split(' ', '\n');
 
-  // return strArr.map((x, i) => {
-  //   console.log(x, i);
+  // TODO: function that finds '::blurbs::' and replaces with chosen blurbs
+    // function may prompt in console for the keys?
 
   for (let i = 0; i < strArr.length; i++) {
     let x = strArr[i];
@@ -28,7 +31,6 @@ function splitReplaceJoin(string, obj) {
       // removes punctuation from end of string to reapply
       if (punctuation.includes(x[x.length - 1])) {
         ending = x[x.length - 1];
-        // console.log('ending ', ending)
         maybeKey = x.slice(1, x.length - 1);
       }
       else {
