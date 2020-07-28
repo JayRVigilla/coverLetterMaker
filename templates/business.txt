@@ -1,4 +1,4 @@
 { "businessName": "Job Co",
-"position": "Hired",
-"anecdote1" : "I have a cat",
-"anecdote2" : "Their name is mittens" }
+"position": "BAMF",
+"anecdote1" : "I have a cat.",
+"anecdote2" : "Their name is mittens?" }

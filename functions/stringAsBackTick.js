@@ -1,5 +1,5 @@
 /**
- * finds backtick syntax for placeholder within string and substitutes for variable with related key in given object
+ * finds backtick syntax for placeholder within string and substitutes for key in object
  * treat like a sliding window problem.
  * #variableName is convention in coverletter.txt for identifying variables
  * variableName: draftString; a new string to return with values inserted.
@@ -19,9 +19,9 @@
  **/
 
 const findWord = require('./findWord');
-const stringAsBackTick = (str, obj) => {
 
-
+function stringAsBackTick(str, obj) {
+  
   let draft = "";
   let start = 0;
   let end;
@@ -30,17 +30,19 @@ const stringAsBackTick = (str, obj) => {
     // iterate until you find '#'
     if (str[i] === '#') {
       let maybeKey = '';
-
+      console.log('maybe key started', maybeKey);
+      end = i;
       // draft becomes everything from str until the '#'
-      draft += str.slice(start, i);
+      draft += str.slice(start, end);
 
       // find the end of the possible variable name
-      maybeKey = findWord(str, i + 1);
+      maybeKey += findWord(str, i + 1);
+      console.log('value of maybeKey', maybeKey);
 
       if (obj[maybeKey]) {
         draft += obj[maybeKey];
         i += maybeKey.length;
-        start = i;
+        start = end;
       };
     }
   }

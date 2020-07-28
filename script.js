@@ -18,9 +18,7 @@
         // output to a txt file
 
 const fs = require('fs');
-const { exit } = require('process');
-const { stringify } = require('querystring');
-// const { stringAsBackTick } = require('./functions/stringAsBackTick');
+const splitReplaceJoin = require('./functions/splitReplaceJoin');
 let letterTemplate = undefined;
 let userBlurbs = undefined;
 let businessDetails = undefined;
@@ -35,15 +33,14 @@ letterTemplate = getFile(file1).toString();
 userBlurbs = JSON.parse(getFile(file2));
 businessDetails = JSON.parse(getFile(file3));
 
-
-  console.log(`letterTemplate: ${letterTemplate} \nuserBlurbs: ${userBlurbs} \nbusinessDetails: ${businessDetails}`)
-
-
 };
 
 saveFilesToVariables(process.argv[2], process.argv[3], process.argv[4]);
+
 // process coverLetter and MadLib it
-const businessDetailsIn = stringAsBackTick(letterTemplate, businessDetails);
-console.log('businessDetailsIn', businessDetailsIn);
+const knitted = splitReplaceJoin(letterTemplate, businessDetails);
+console.log('output:\n', knitted);
+
+// output to text file
 
 
