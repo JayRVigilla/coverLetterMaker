@@ -11,13 +11,14 @@
 //    call another function to prompt for and insert blurbs at designated location
 
 function splitReplaceJoin(string, obj) {
+  console.log('running splitReplce');
   const regexTest = word => /^[#].*/.test(word);
 
   // TODO: replace with regex for 'not a number or letter'
   const punctuation = [',', '.', '?', '!', '/', ':', ';', '(', ')'];
 
   let maybeKey;
-  let strArr = string.split(' ', '\n');
+  let strArr = string.split(' ');
 
   // TODO: function that finds '::blurbs::' and replaces with chosen blurbs
     // function may prompt in console for the keys?
@@ -36,10 +37,11 @@ function splitReplaceJoin(string, obj) {
       else {
         maybeKey = x.slice(1);
       }
-
       strArr[i] = obj[maybeKey] + ending;
     }
+    console.log('maybeKey ', maybeKey);
   }
+  console.log('from splitReplaceJoin ', strArr.join(' '))
   return strArr.join(' ');
 }
 

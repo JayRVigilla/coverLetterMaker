@@ -23,6 +23,10 @@ let letterTemplate = undefined;
 let userBlurbs = undefined;
 let businessDetails = undefined;
 
+// TODO: readline to create back and forth prompting
+// creates a better user experience
+// instead of intimidating command line "node script.js **three file names**"
+
 function saveFilesToVariables(file1, file2, file3) {
   // return given file in templates folder
   function getFile(filename) {
@@ -33,9 +37,12 @@ letterTemplate = getFile(file1).toString();
 userBlurbs = JSON.parse(getFile(file2));
 businessDetails = JSON.parse(getFile(file3));
 
+  console.log(letterTemplate, userBlurbs, businessDetails);
 };
 
 saveFilesToVariables(process.argv[2], process.argv[3], process.argv[4]);
+
+// remove \n from letter template, but be able to reintroduce them afterwards
 
 // process coverLetter and MadLib it
 const knitted = splitReplaceJoin(letterTemplate, businessDetails);
