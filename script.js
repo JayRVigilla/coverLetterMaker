@@ -19,6 +19,7 @@
 
 const fs = require('fs');
 const splitReplaceJoin = require('./functions/splitReplaceJoin');
+const pickBlurbs = require('./functions/pickBlurbs');
 let letterTemplate = undefined;
 let userBlurbs = undefined;
 let businessDetails = undefined;

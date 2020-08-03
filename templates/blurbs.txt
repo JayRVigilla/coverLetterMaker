@@ -1,7 +1,7 @@
 { "first": "I have a blurb here",
 "second": "and another blurb here",
 "third": "you should totally hire me",
-"management": "As a regional manager for Dunder Mifflin Paper Company in Scanton, Penn",
+"management": "As a regional manager for Dunder Mifflin Paper Company in Scanton, PA I've always looked up to Bono, Jesus, and my grandmother.",
 "awesomeness": "When climbing Half Dome without a tether, You now you're pretty awesome. Dogs Love me.",
 "fiscallyResponsible": "I am really good with money. Can I haz some? blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah",
 }

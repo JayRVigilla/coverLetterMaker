@@ -4,14 +4,18 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
-rl.question("What is your name ? ", function(name) {
-    rl.question("Where do you live ? ", function(country) {
-        console.log(`${name}, is a citizen of ${country}`);
-        rl.close();
-    });
-});
 
-rl.on("close", function() {
+rl.question("What's your name? ", function(name) {
+    rl.question("Where do you live ? ", function(country) {
+      blurb1 = name;
+      console.log(`${name}, is a citizen of ${country}`);
+      rl.close();
+    });
+  });
+
+  rl.on("close", function() {
     console.log("\nBYE BYE !!!");
     process.exit(0);
 });
+
+
