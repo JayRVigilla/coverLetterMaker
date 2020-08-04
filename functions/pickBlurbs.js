@@ -27,25 +27,27 @@ function pickBlurbs(obj) {
     output: process.stdout
   });
 
+
   const receiveBlurbs = () => {
 
     rl.question("What's your first choice? ", function (blurb1) {
       rl.question("Enter your second choice. ", function (blurb2) {
-        rl.question("Enter your third choice.", function (blurb3) {
+        rl.question("Enter your third choice. ", function (blurb3) {
           console.log(`You've picked: \n\n ${obj[blurb1]}\n\n ${obj[blurb2]}\n\n ${obj[blurb3]}`);
           rl.close;
+          return [obj[blurb1], obj[blurb2], obj[blurb3]]
         });
       });
     });
 
     rl.on("close", function() {
-      console.log("...moving on");
+      console.log("\n*****\n\nYou've decided to quit cover letter maker.\n\n*****");
       process.exit(0);
   });
   }
 
   const promptUser = (obj) => {
-    console.log("Enter characteristic you'd like to add to your cover letter. \n\n")
+    console.log("\n*** Enter characteristic you'd like to add to your cover letter. *** \n")
     for (let key in obj) {
       let preview =
         obj[key].length > 41
@@ -56,16 +58,8 @@ function pickBlurbs(obj) {
     }
   }
 
-  // const acceptUserInput = () => {
-  //   // takes entered args (characteristic keys)
-  //   // returns as array of strings
-  //  }
-
   promptUser(obj);
-  // acceptUserInput()
   receiveBlurbs();
 }
-
-// pickBlurbs(testObj);
 
 module.exports = pickBlurbs;

@@ -37,17 +37,17 @@ function saveFilesToVariables(file1, file2, file3) {
 letterTemplate = getFile(file1).toString();
 userBlurbs = JSON.parse(getFile(file2));
 businessDetails = JSON.parse(getFile(file3));
-
-  console.log(letterTemplate, userBlurbs, businessDetails);
 };
 
 saveFilesToVariables(process.argv[2], process.argv[3], process.argv[4]);
 
+pickBlurbs(userBlurbs);
 // remove \n from letter template, but be able to reintroduce them afterwards
 
 // process coverLetter and MadLib it
 const knitted = splitReplaceJoin(letterTemplate, businessDetails);
-console.log('output:\n', knitted);
+// TODO: place selected blurbs into ::blurbs:: space in knitted
+console.log('output:\n', knitted); // TODO: logging before prompting for blurbs => make this a function
 
 // output to text file
 
